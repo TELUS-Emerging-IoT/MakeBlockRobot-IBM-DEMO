@@ -1,0 +1,171 @@
+[
+    {
+        "id": "a209ec87.43498",
+        "type": "ibmiot out",
+        "z": "8f55691f.277d28",
+        "authentication": "boundService",
+        "apiKey": "72f44dcf.ce6f54",
+        "outputType": "cmd",
+        "deviceId": "000B958901F8",
+        "deviceType": "Telus-Avnet-LTE-M1-Nucleo-STM32-MCU",
+        "eventCommandType": "control",
+        "format": "String",
+        "data": "command",
+        "qos": "0",
+        "name": "Robot",
+        "service": "registered",
+        "x": 330,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "64765feb.48d8a",
+        "type": "inject",
+        "z": "8f55691f.277d28",
+        "name": "Forward",
+        "topic": "",
+        "payload": "forward",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 160,
+        "wires": [
+            [
+                "a209ec87.43498",
+                "bef4b179.63de9"
+            ]
+        ]
+    },
+    {
+        "id": "d81a8846.22bb48",
+        "type": "debug",
+        "z": "8f55691f.277d28",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 290,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "26d6bd5a.c762c2",
+        "type": "inject",
+        "z": "8f55691f.277d28",
+        "name": "Backward",
+        "topic": "",
+        "payload": "backward",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 200,
+        "wires": [
+            [
+                "a209ec87.43498",
+                "bef4b179.63de9"
+            ]
+        ]
+    },
+    {
+        "id": "893aa4fc.eab878",
+        "type": "inject",
+        "z": "8f55691f.277d28",
+        "name": "Pick Up",
+        "topic": "",
+        "payload": "pick up",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "a209ec87.43498",
+                "bef4b179.63de9"
+            ]
+        ]
+    },
+    {
+        "id": "bef4b179.63de9",
+        "type": "debug",
+        "z": "8f55691f.277d28",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 330,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "efa22fa5.41c34",
+        "type": "cloudant out",
+        "z": "8f55691f.277d28",
+        "name": "DB out",
+        "cloudant": "",
+        "database": "sensor",
+        "service": "Robot-CalgaryDemo-cloudantNoSQLDB",
+        "payonly": false,
+        "operation": "insert",
+        "x": 280,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "2bf9985f.510938",
+        "type": "ibmiot in",
+        "z": "8f55691f.277d28",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "000B958901F8",
+        "applicationId": "",
+        "deviceType": "+",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "Robot",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": true,
+        "allLogicalInterfaces": "",
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "d81a8846.22bb48",
+                "efa22fa5.41c34"
+            ]
+        ]
+    },
+    {
+        "id": "72f44dcf.ce6f54",
+        "type": "ibmiot",
+        "z": "",
+        "name": "Robot",
+        "keepalive": "3000",
+        "serverName": "wkfedz.messaging.internetofthings.ibmcloud.com",
+        "cleansession": false,
+        "appId": "",
+        "shared": false
+    }
+]
