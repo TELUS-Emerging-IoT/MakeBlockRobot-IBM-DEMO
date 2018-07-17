@@ -1,27 +1,27 @@
 [
     {
-        "id": "a209ec87.43498",
+        "id": "2ec6ff2a.2c3fb",
         "type": "ibmiot out",
-        "z": "8f55691f.277d28",
+        "z": "deb0d57.1c46528",
         "authentication": "boundService",
-        "apiKey": "72f44dcf.ce6f54",
+        "apiKey": "27e988bd.893a48",
         "outputType": "cmd",
-        "deviceId": "000B958901F8",
-        "deviceType": "Telus-Avnet-LTE-M1-Nucleo-STM32-MCU",
+        "deviceId": "VancouverRobotDemoUnit",
+        "deviceType": "Telus-IOT-Starter-Kit",
         "eventCommandType": "control",
         "format": "String",
         "data": "command",
         "qos": "0",
         "name": "Robot",
         "service": "registered",
-        "x": 330,
-        "y": 200,
+        "x": 450,
+        "y": 280,
         "wires": []
     },
     {
-        "id": "64765feb.48d8a",
+        "id": "3099fa37.784cc6",
         "type": "inject",
-        "z": "8f55691f.277d28",
+        "z": "deb0d57.1c46528",
         "name": "Forward",
         "topic": "",
         "payload": "forward",
@@ -31,32 +31,32 @@
         "once": false,
         "onceDelay": 0.1,
         "x": 100,
-        "y": 160,
+        "y": 200,
         "wires": [
             [
-                "a209ec87.43498",
-                "bef4b179.63de9"
+                "2ec6ff2a.2c3fb",
+                "846afdfd.56b04"
             ]
         ]
     },
     {
-        "id": "d81a8846.22bb48",
+        "id": "fde05c01.402e6",
         "type": "debug",
-        "z": "8f55691f.277d28",
+        "z": "deb0d57.1c46528",
         "name": "",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "payload",
-        "x": 290,
-        "y": 100,
+        "x": 450,
+        "y": 200,
         "wires": []
     },
     {
-        "id": "26d6bd5a.c762c2",
+        "id": "8e25327d.8c2b",
         "type": "inject",
-        "z": "8f55691f.277d28",
+        "z": "deb0d57.1c46528",
         "name": "Backward",
         "topic": "",
         "payload": "backward",
@@ -66,73 +66,73 @@
         "once": false,
         "onceDelay": 0.1,
         "x": 100,
-        "y": 200,
+        "y": 260,
         "wires": [
             [
-                "a209ec87.43498",
-                "bef4b179.63de9"
+                "2ec6ff2a.2c3fb",
+                "846afdfd.56b04"
             ]
         ]
     },
     {
-        "id": "893aa4fc.eab878",
+        "id": "119980f8.b9481f",
         "type": "inject",
-        "z": "8f55691f.277d28",
+        "z": "deb0d57.1c46528",
         "name": "Pick Up",
         "topic": "",
-        "payload": "pick up",
+        "payload": "pick_up",
         "payloadType": "str",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "x": 110,
-        "y": 240,
+        "y": 320,
         "wires": [
             [
-                "a209ec87.43498",
-                "bef4b179.63de9"
+                "2ec6ff2a.2c3fb",
+                "846afdfd.56b04"
             ]
         ]
     },
     {
-        "id": "bef4b179.63de9",
+        "id": "846afdfd.56b04",
         "type": "debug",
-        "z": "8f55691f.277d28",
+        "z": "deb0d57.1c46528",
         "name": "",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 330,
+        "x": 450,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d80bd32b.b4005",
+        "type": "cloudant out",
+        "z": "deb0d57.1c46528",
+        "name": "DB out",
+        "cloudant": "",
+        "database": "sensor",
+        "service": "VancouverRobotIBM-cloudantNoSQLDB",
+        "payonly": true,
+        "operation": "insert",
+        "x": 460,
         "y": 160,
         "wires": []
     },
     {
-        "id": "efa22fa5.41c34",
-        "type": "cloudant out",
-        "z": "8f55691f.277d28",
-        "name": "DB out",
-        "cloudant": "",
-        "database": "sensor",
-        "service": "Robot-CalgaryDemo-cloudantNoSQLDB",
-        "payonly": false,
-        "operation": "insert",
-        "x": 280,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "2bf9985f.510938",
+        "id": "663286a0.a250a8",
         "type": "ibmiot in",
-        "z": "8f55691f.277d28",
+        "z": "deb0d57.1c46528",
         "authentication": "boundService",
         "apiKey": "",
         "inputType": "evt",
         "logicalInterface": "",
         "ruleId": "",
-        "deviceId": "000B958901F8",
+        "deviceId": "VancouverRobotDemoUnit",
         "applicationId": "",
         "deviceType": "+",
         "eventType": "+",
@@ -149,16 +149,62 @@
         "allFormats": "",
         "qos": 0,
         "x": 110,
-        "y": 100,
+        "y": 140,
         "wires": [
             [
-                "d81a8846.22bb48",
-                "efa22fa5.41c34"
+                "fde05c01.402e6",
+                "d80bd32b.b4005"
             ]
         ]
     },
     {
-        "id": "72f44dcf.ce6f54",
+        "id": "deab2c64.d6ecb",
+        "type": "http in",
+        "z": "deb0d57.1c46528",
+        "name": "HTTP IN",
+        "url": "/request",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 380,
+        "wires": [
+            [
+                "f41cba90.5c3a68",
+                "3b018dd7.fc78f2"
+            ]
+        ]
+    },
+    {
+        "id": "f41cba90.5c3a68",
+        "type": "function",
+        "z": "deb0d57.1c46528",
+        "name": "ΔPayload",
+        "func": "msg.payload = msg.payload.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 300,
+        "y": 360,
+        "wires": [
+            [
+                "2ec6ff2a.2c3fb",
+                "846afdfd.56b04"
+            ]
+        ]
+    },
+    {
+        "id": "3b018dd7.fc78f2",
+        "type": "http response",
+        "z": "deb0d57.1c46528",
+        "name": "HTTP OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 300,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "27e988bd.893a48",
         "type": "ibmiot",
         "z": "",
         "name": "Robot",
