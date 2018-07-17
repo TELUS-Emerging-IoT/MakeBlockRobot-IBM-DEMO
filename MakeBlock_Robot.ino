@@ -1,4 +1,4 @@
-#include "MeMegaPi.h"
+#include <MeMegaPi.h>
 #include <MeLEDMatrix.h>
 #include <MePort.h>
 #include <SoftwareSerial.h>
@@ -49,7 +49,7 @@ void loop()
   }
    
   if (val== 'x') { //move forwards
-      motor2.run(motorSpeed);
+      motor2.run(-motorSpeed);
       motor1.run(-motorSpeed);
       delay(1500); 
       motor2.stop();
@@ -57,11 +57,74 @@ void loop()
   }
   else if (val== 'y') { // move backwards
  
-      motor2.run(-motorSpeed);
+      motor2.run(motorSpeed);
       motor1.run(motorSpeed);
       delay(1500); 
       motor2.stop();
       motor1.stop(); 
+  }
+    else if (val == 'l') { //turn left
+      motor2.run(motorSpeed);
+      motor1.run(-motorSpeed);
+      delay(1100);
+      motor2.stop();
+      motor1.stop();
+  }
+    else if (val == 'r') { //turn right
+      motor2.run(-motorSpeed);
+      motor1.run(motorSpeed);
+      delay(1100);
+      motor2.stop();
+      motor1.stop();
+  }
+    else if (val == 't') { //pickup
+      dist = ultraSensor.distanceCm();
+      while(dist > 15.80){
+        motor2.run(-motorSpeed);
+        motor1.run(-motorSpeed);
+        delay(250);
+        motor2.stop();
+        motor1.stop();
+        dist = ultraSensor.distanceCm();
+        Serial.print(ultraSensor.distanceCm());
+      }
+      motor3.run(motorSpeed);
+      delay(500);
+      motor3.stop();
+      motor4.run(motorSpeed);
+      delay(1250);
+      motor4.stop();
+      delay(300);
+      motor3.run(-motorSpeed);
+      delay(500);
+      motor3.stop();
+      motor2.run(-motorSpeed);
+      motor1.run(-motorSpeed);
+      delay(600);
+      motor2.stop();
+      motor1.stop();
+      face('2');
+      delay(3000);
+  }
+    else if (val == 'd') { //drop down 
+      face('4');
+      motor3.run(motorSpeed);
+      delay(600);
+      motor3.stop();
+      delay(500);
+      motor4.run(-motorSpeed);
+      delay(1250);
+      motor4.stop();
+      delay(500);
+      motor3.run(-motorSpeed);
+      delay(600);
+      motor3.stop();
+      delay(1000);
+      motor2.run(motorSpeed);
+      motor1.run(motorSpeed);
+      delay(500);
+      motor2.stop();
+      motor1.stop();
   }
   else if (val== 'q') { //turn left and move forward
       motor2.run(-motorSpeed);
@@ -75,12 +138,12 @@ void loop()
       motor2.stop();
       motor1.stop(); 
   }
-  else if (val == 'i') {
+  else if (val == 'i') { //Initialization sequence
       face('2');
-      motor3.run(-motorSpeed);
+      motor3.run(motorSpeed);
       delay(1500);
       motor3.stop();
-      motor3.run(motorSpeed);
+      motor3.run(-motorSpeed);
       delay(1400);
       motor3.stop();
       motor4.run(motorSpeed);
@@ -101,49 +164,7 @@ void loop()
         Serial.print(ultraSensor.distanceCm());
       }
       
-  }
-  else if (val == 't') {
-      face('2');
-      dist = ultraSensor.distanceCm();
-      while(dist > 15.80){
-        motor2.run(motorSpeed);
-        motor1.run(-motorSpeed);
-        delay(250);
-        motor2.stop();
-        motor1.stop();
-        dist = ultraSensor.distanceCm();
-        Serial.print(ultraSensor.distanceCm());
-      }
-      
-      motor4.run(-motorSpeed);
-      delay(1700);
-      motor4.stop();
-      motor3.run(-motorSpeed);
-      delay(1500);
-      motor3.stop();
-      motor4.run(motorSpeed);
-      delay(1700);
-      motor2.run(motorSpeed);
-      motor1.run(-motorSpeed);
-      delay(600);
-      motor2.stop();
-      motor1.stop();
-      motor4.run(-motorSpeed);
-      delay(400);
-      motor4.stop();
-      motor3.run(motorSpeed);
-      delay(1000);
-      motor3.stop();
-      delay(3000);
-  }
-    
-  else if (val == 'l') {
-      motor2.run(-motorSpeed);
-      motor1.run(-motorSpeed);
-      delay(450);
-      motor2.stop();
-      motor1.stop();
-  }
+  } 
   else if (val == 'o') {
       motor2.run(-motorSpeed);
       motor1.run(-motorSpeed);
@@ -151,29 +172,8 @@ void loop()
       motor2.stop();
       motor1.stop();
   }
-  else if (val == 'r') {
-      motor2.run(motorSpeed);
-      motor1.run(motorSpeed);
-      delay(1000);
-      motor2.stop();
-      motor1.stop();
-  }
-  else if (val == 'd') {
-      face('p');
-      motor3.run(-motorSpeed);
-      delay(1000);
-      motor3.stop();
-      motor4.run(-motorSpeed);
-      delay(300);
-      motor4.stop();
-      motor2.run(-motorSpeed);
-      motor1.run(motorSpeed);
-      delay(1000);
-      motor2.stop();
-      motor1.stop();
-  }
   else if (val == 'p') {
-        face(val);
+        face('1');
         motor3.run(-motorSpeed);
         delay(500);
         motor3.stop();
@@ -201,19 +201,20 @@ void loop()
       motor4.stop();
   }
   else if (val == 'u'){
-      face(val);
+      face('1');
       motor3.run(motorSpeed);
       delay(700);
       motor3.stop();
   }
   else if (val == 'v'){
-      face(val);
+      face('1');
       motor3.run(-motorSpeed);
       delay(500);
       motor3.stop();
   }
-  else if (val == '5'){
-      face(val);
+  else if (val == '0'){
+      face('2');
+      delay(2000);
   }
   else if (val != 1){
       face(val);
@@ -233,7 +234,7 @@ void face(char emotion){
               break;
     case '3': Matrix_1.drawBitmap(0,0,sizeof(Mad), Mad);
               break;
-    case 'p': Matrix_1.drawBitmap(0,0,sizeof(Sad), Sad);
+    case '4': Matrix_1.drawBitmap(0,0,sizeof(Sad), Sad);
               break;
     case '5': Matrix_1.drawBitmap(0,0,sizeof(Dead), Dead);
               delay(1000);
@@ -244,7 +245,7 @@ void face(char emotion){
               Matrix_1.drawBitmap(0,0,sizeof(RIP), RIP);
               delay(1000);
               break;
-    case 'h': Matrix_1.drawBitmap(0,0,sizeof(Heart), Heart);
+    case '6': Matrix_1.drawBitmap(0,0,sizeof(Heart), Heart);
               break;
     default:  break;
     
