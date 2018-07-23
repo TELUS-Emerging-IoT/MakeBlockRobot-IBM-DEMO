@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import { Alert, StyleSheet, Image, Text, View, TouchableOpacity } from 'react-native';
 
+const req = "https://vancouverrobotibm.mybluemix.net";
+
 //Requests with pre-defined payload values for movement
-const req_moveForward = new Request("https://vancouverrobotibm.mybluemix.net/request?payload=forward&topic=");
-const req_moveBackwards = new Request("https://vancouverrobotibm.mybluemix.net/request?payload=backward&topic=");
-const req_turnLeft = new Request("https://vancouverrobotibm.mybluemix.net/request?payload=left&topic=");
-const req_turnRight = new Request("https://vancouverrobotibm.mybluemix.net/request?payload=right&topic=");
-const req_pickUp = new Request("https://vancouverrobotibm.mybluemix.net/request?payload=pick_up&topic=");
-const req_dropDown = new Request("https://vancouverrobotibm.mybluemix.net/request?payload=drop_down&topic=");
+const req_moveForward = new Request(req + "/request?payload=forward&topic=");
+const req_moveBackwards = new Request(req + "/request?payload=backward&topic=");
+const req_turnLeft = new Request(req + "/request?payload=left&topic=");
+const req_turnRight = new Request(req + "/request?payload=right&topic=");
+const req_pickUp = new Request(req + "/request?payload=pick_up&topic=");
+const req_dropDown = new Request(req + "/request?payload=drop_down&topic=");
 
 //Requests with pre-defined payload values for faces
-const req_heart = new Request("https://vancouverrobotibm.mybluemix.net/request?payload=heart&topic=");
-const req_happy = new Request("https://vancouverrobotibm.mybluemix.net/request?payload=happy&topic=");
-const req_sad = new Request("https://vancouverrobotibm.mybluemix.net/request?payload=sad&topic=");
-const req_mad = new Request("https://vancouverrobotibm.mybluemix.net/request?payload=mad&topic=");
-const req_dead = new Request("https://vancouverrobotibm.mybluemix.net/request?payload=dead&topic=");
+const req_heart = new Request(req + "/request?payload=heart&topic=");
+const req_happy = new Request(req + "/request?payload=happy&topic=");
+const req_sad = new Request(req + "/request?payload=sad&topic=");
+const req_mad = new Request(req + "/request?payload=mad&topic=");
+const req_dead = new Request(req + "/request?payload=dead&topic=");
 
 function timeout(ms, promise) {
   return new Promise(function(resolve, reject) {
